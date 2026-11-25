@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>DeployFlow</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 760px; margin: 2rem auto; padding: 0 1rem; }
+    code { background: #eee; padding: 2px 6px; border-radius: 4px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+    th, td { text-align: left; padding: 8px; border-bottom: 1px solid #ddd; font-size: 14px; }
+    .SUCCESS { color: #0a7d2c; font-weight: 600; }
+    .FAILED { color: #b3261e; font-weight: 600; }
+    .ROLLBACK { color: #b26a00; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <h1>DeployFlow</h1>
+  <p>Running version: <code>{{ version }}</code></p>
+  <h2>Recent deployments</h2>
+  {% if history %}
+  <table>
+    <tr><th>Time</th><th>Status</th><th>Detail</th></tr>
+    {% for h in history %}
+    <tr><td>{{ h.time }}</td><td class="{{ h.status }}">{{ h.status }}</td><td>{{ h.detail }}</td></tr>
+    {% endfor %}
+  </table>
+  {% else %}
+  <p>No deployments recorded yet.</p>
+  {% endif %}
+</body>
+</html>
